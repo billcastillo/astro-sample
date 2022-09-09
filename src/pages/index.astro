@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,7 +13,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
-		<main>
+		<main class="prose">
 			<h1>🧑‍🚀 Hello, Astronaut!</h1>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
@@ -44,7 +45,69 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 					>astro-blog-template
 				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
 			</p>
+
+			<div class="flex js-confetti place-items-center place-content-center relative w-full aspect-square bg-transparent"
+				data-tilt data-tilt-glare data-tilt-max-glare="0.5">
+				<svg
+					width="80%"
+					height="80%"
+					viewBox="0 0 97 69"
+					fill="red"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M0 0V68H27.5V61.5H34.5V41H27.5V27.5H34.5V13.5H27.5V6.5H21V0H0ZM14 27V14H20.5V27H14ZM14 54.5V41H20.5V54.5H14Z"
+					fill="red"
+					/>
+					<path d="M41 0H55V68H41V0Z" fill="red" />
+					<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M62 0V68.2975H76V41H82.5V68.2975H96.5V41H89.5V27.5H96.5V7H89.5V0H62ZM76 27V13.5H82.5V27H76Z"
+					fill="red"
+					/>
+				</svg>
+			</div>
+
+			<!-- <div class="flex js-confetti place-items-center place-content-center relative aspect-square bg-white"
+				data-tilt data-tilt-full-page-listening data-tilt-glare data-tilt-max-glare="0.4" data-tilt-perspective="200">
+				<svg
+					width="128"
+					height="128"
+					viewBox="0 0 97 69"
+					fill="red"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M0 0V68H27.5V61.5H34.5V41H27.5V27.5H34.5V13.5H27.5V6.5H21V0H0ZM14 27V14H20.5V27H14ZM14 54.5V41H20.5V54.5H14Z"
+					fill="red"
+					/>
+					<path d="M41 0H55V68H41V0Z" fill="red" />
+					<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M62 0V68.2975H76V41H82.5V68.2975H96.5V41H89.5V27.5H96.5V7H89.5V0H62ZM76 27V13.5H82.5V27H76Z"
+					fill="red"
+					/>
+				</svg>
+			</div> -->
 		</main>
+
+		<button class="mt-8 js-confetti">Button click</button>
+
 		<Footer />
+
+		<script type="text/javascript" src="../../dist/vanilla-tilt.min.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> -->
+		<script>
+			import confetti from 'canvas-confetti';
+			document.body.querySelectorAll('.js-confetti').forEach((btn) => {
+				btn.addEventListener('click', () => confetti());
+			});
+		</script>
 	</body>
 </html>

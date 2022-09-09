@@ -3,19 +3,19 @@ import vercel from '@astrojs/vercel/serverless';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import image from '@astrojs/image';
-
 import tailwind from '@astrojs/tailwind';
+
 
 // https://astro.build/config
 export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: 'dracula',
-      langs: ['js', 'html'],
-    },
+      langs: ['js', 'html']
+    }
   },
   site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind(), image()],
+  integrations: [mdx(), sitemap(), image(), tailwind()],
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel()
 });
