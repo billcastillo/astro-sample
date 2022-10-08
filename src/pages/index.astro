@@ -1,113 +1,117 @@
 ---
-import '../styles/global.css';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import BIRLayout from "../layouts/BIRLayout.astro";
+import OST from "../components/OST.astro";
+import RanWindow from "../components/RanWindow.astro";
+import BIRParticles from "../components/BIRParticles.astro";
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+const content = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  isBlog: false,
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main class="prose">
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+<!-- to add: -->
+<!-- https://swiperjs.com/demos -->
+<!-- https://codesandbox.io/s/pzq56b?file=/index.html -->
+<!-- https://designnokoto.com/_____wd_/page/3 -->
+<BIRLayout content={content}>
+  <section class='relative text-center overflow-hidden'>
+    <BIRParticles />
+    <div class='relative px-6 py-16 lg:py-32' data-tilt>
+      <h1 class='hidden'>BIR Gaming</h1>
+      <svg
+        class='grid place-content-center mx-auto max-w-lg aspect-square'
+        viewBox='0 0 97 69'
+        fill='#FF0000'
+        xmlns='http://www.w3.org/2000/svg'
+        ><path
+          fill-rule='evenodd'
+          clip-rule='evenodd'
+          d='M0 0V68H27.5V61.5H34.5V41H27.5V27.5H34.5V13.5H27.5V6.5H21V0H0ZM14 27V14H20.5V27H14ZM14 54.5V41H20.5V54.5H14Z'
+          fill='#FF0000'></path><path d='M41 0H55V68H41V0Z' fill='#FF0000'
+        ></path><path
+          fill-rule='evenodd'
+          clip-rule='evenodd'
+          d='M62 0V68.2975H76V41H82.5V68.2975H96.5V41H89.5V27.5H96.5V7H89.5V0H62ZM76 27V13.5H82.5V27H76Z'
+          fill='#FF0000'></path>
+      </svg>
+    </div>
+  </section>
 
-			<div class="flex js-confetti place-items-center place-content-center relative w-full aspect-square bg-transparent"
-				data-tilt data-tilt-glare data-tilt-max-glare="0.5">
-				<svg
-					width="80%"
-					height="80%"
-					viewBox="0 0 97 69"
-					fill="red"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M0 0V68H27.5V61.5H34.5V41H27.5V27.5H34.5V13.5H27.5V6.5H21V0H0ZM14 27V14H20.5V27H14ZM14 54.5V41H20.5V54.5H14Z"
-					fill="red"
-					/>
-					<path d="M41 0H55V68H41V0Z" fill="red" />
-					<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M62 0V68.2975H76V41H82.5V68.2975H96.5V41H89.5V27.5H96.5V7H89.5V0H62ZM76 27V13.5H82.5V27H76Z"
-					fill="red"
-					/>
-				</svg>
-			</div>
+  <section class='relative px-6 py-16 lg:py-32 text-center'>
+    <div
+      class='absolute inset-0 w-full h-full bg-[url(/cover/4.jpg)] bg-center bg-cover opacity-60'
+    >
+    </div>
+    <div class='relative mx-auto max-w-4xl z-10'>
+      <RanWindow title='BIR Lang Malakas'>
+        <div class='p-4 lg:p-6'>
+          <h2
+            class='font-bebas text-4xl lg:text-[64px] text-bir-text-green leading-tight'
+          >
+            Pinakamabait na guild sa <a
+              href='https://www.facebook.com/ranonlinepinas'
+              class='underline'
+              target='_blank'
+              rel='noreferrer'>Ran Online Pinas</a
+            >. bagsakan ng mga pinakamatitikas at matatag na players.
+          </h2>
+        </div>
+      </RanWindow>
+    </div>
+  </section>
 
-			<!-- <div class="flex js-confetti place-items-center place-content-center relative aspect-square bg-white"
-				data-tilt data-tilt-full-page-listening data-tilt-glare data-tilt-max-glare="0.4" data-tilt-perspective="200">
-				<svg
-					width="128"
-					height="128"
-					viewBox="0 0 97 69"
-					fill="red"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M0 0V68H27.5V61.5H34.5V41H27.5V27.5H34.5V13.5H27.5V6.5H21V0H0ZM14 27V14H20.5V27H14ZM14 54.5V41H20.5V54.5H14Z"
-					fill="red"
-					/>
-					<path d="M41 0H55V68H41V0Z" fill="red" />
-					<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
-					d="M62 0V68.2975H76V41H82.5V68.2975H96.5V41H89.5V27.5H96.5V7H89.5V0H62ZM76 27V13.5H82.5V27H76Z"
-					fill="red"
-					/>
-				</svg>
-			</div> -->
-		</main>
+  <section class='px-6 py-16 lg:py-32'>
+    <div class='container mx-auto'>
+      <div class='flex justify-center content-center items-center'>
+        <h3
+          class='mr-8 uppercase leading-tight font-bebas text-4xl lg:text-[64px] text-bir-text-green'
+        >
+          Sali ka? <br /> pm mo kami
+        </h3>
+        <div class='max-w-[150px] lg:max-w-[250px]'>
+          <img src='/char/castle.png' />
+          <p class='mt-4 text-center text-lg lg:text-2xl'>IGN: Castle</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-		<button class="mt-8 js-confetti">Button click</button>
+  <section class='relative px-6 py-6 lg:py-24 bg-texture-and-cross bg-repeat'>
+    <h2
+      class='mb-12 text-center font-bebas text-4xl lg:text-[64px] text-bir-text-green'
+    >
+      REQUIREMENTS:
+    </h2>
+    <div class='mx-auto container lg:max-w-[60%]'>
+      <img class='w-full h-auto' src='/requirements.png' />
+    </div>
+  </section>
 
-		<Footer />
+  <section class='relative px-6 py-16 lg:py-32 text-center'>
+    <div class='relative mx-auto container z-10'>
+      <div class='mb-6 lg:mb-12'>
+        <h2
+          class='pb-2 lg:pb-4 leading-none tracking-wider font-bebas text-4xl text-bir-red text-outline text-fill-transparent'
+          style='font-size: clamp(24px, 48px + 4vw, 160px);'
+        >
+          BIR LANG MALAKAS
+        </h2>
+        <p class='text-lg lg:text-2xl'>by `Ashura- / Ron Cali</p>
+      </div>
 
-		<script type="text/javascript" src="../../dist/vanilla-tilt.min.js"></script>
-		<!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> -->
-		<script>
-			import confetti from 'canvas-confetti';
-			document.body.querySelectorAll('.js-confetti').forEach((btn) => {
-				btn.addEventListener('click', () => confetti());
-			});
-		</script>
-	</body>
-</html>
+      <div class='mx-auto max-w-4xl'>
+        <RanWindow title='Official OST'>
+          <div class='py-2'>
+            <OST />
+          </div>
+        </RanWindow>
+      </div>
+    </div>
+  </section>
+
+  <!-- <div class="sentinel"></div> -->
+</BIRLayout>

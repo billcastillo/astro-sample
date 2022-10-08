@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css';
 import '../styles/page-layout.css';
-import '@fontsource/changa/400.css';
+import '../components/Fonts.astro';
+// import '@fontsource/changa/400.css';
+// import '@fontsource/bebas-neue/400.css';
 
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
@@ -23,6 +25,7 @@ const {
   <head>
     <BaseHead title={title} description={description} />
     <style>
+      body { font-family: "Bebas Neue", cursive; }
       p {
         font-size: 20px;
       }
@@ -34,6 +37,7 @@ const {
 
   <body>
     <Header />
+
     <main class="text-lg">
       <slot />
     </main>

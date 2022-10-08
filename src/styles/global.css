@@ -5,9 +5,10 @@
  */
 body {
 	font-family: Changa, Verdana, Geneva, Tahoma, sans-serif;
-	margin: auto;
-	padding: 20px;
-	max-width: 65ch;
+	/* font-family: "Bebas Neue", Verdana, Geneva, Tahoma, sans-serif; */
+	/* margin: auto; */
+	/* padding: 20px; */
+	/* max-width: 65ch; */
 	text-align: left;
 	background-color: #fff;
 	word-wrap: break-word;
@@ -64,4 +65,35 @@ blockquote {
 	padding: 2px 0px 2px 20px;
 	margin: 0px;
 	font-style: italic;
+}
+
+.text-outline {
+	-webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #FF0000;
+}
+
+.text-fill-transparent {
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 1024px) {
+	.text-outline {
+		-webkit-text-stroke-width: 4px;
+	}
+}
+
+.text-shadow-1 {
+	text-shadow: 1px 1px 0px black;
+}
+
+.text-shadow-2 {
+	text-shadow: 2px 2px 0px black;
+}
+
+.bg-noise-1 {
+	background-color: rgba(0,0,0,.1);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFAQMAAAC3obSmAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURUdwTAAAAJ8qhFEAAAABdFJOUwBA5thmAAAAEklEQVQI12MwYDBgYGBoYGAAAASKAOH8MS30AAAAAElFTkSuQmCC);
+	background-size: 2px;
+	content: "";
+	opacity: 0.5;
 }

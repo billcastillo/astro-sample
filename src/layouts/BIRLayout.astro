@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import '../styles/page-layout.css';
+import '../components/Fonts.astro';
+
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  content: {
+    title: string;
+    description: string;
+    isBlog: boolean;
+  };
+}
+
+const {
+  content: { title, description, isBlog },
+} = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+			.wrapper {
+				transition: all 0.2s ease-in-out;
+				color: #06D7B1;
+			}
+			.scaled-down {
+				transform: scale(0.85);
+				border-radius: 12px;
+			}
+			.sentinel {
+				width: 100%;
+				height: 100px;
+				background-color: tomato;
+			}
+		</style>
+  </head>
+
+  <body class="bg-dark bg-[url('/bg/bg-red.jpg')] bg-fixed bg-cover">
+    <!-- <Header /> -->
+
+    <div class="wrapper z-100 bg-bir-dark text-bir-text-green">
+      <main class={ isBlog ? 'prose dark:prose-invert' : ''}>
+        <slot />
+      </main>
+    </div>
+    
+    <div class="h-[1px] footer-sentinel invisible"></div>
+    <Footer />
+
+		<script>
+			// import confetti from 'canvas-confetti';
+			// document.body.querySelectorAll('.js-confetti').forEach((btn) => {
+			// 	btn.addEventListener('click', () => confetti());
+			// });
+
+			const mainElem = document.querySelector('.wrapper');
+
+			const observer = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					// Each entry describes an intersection change for one observed
+					// target element:
+					//   entry.boundingClientRect
+					//   entry.intersectionRatio
+					//   entry.intersectionRect
+					//   entry.isIntersecting
+					//   entry.rootBounds
+					//   entry.target
+					//   entry.time
+
+					const intersecting = entry.isIntersecting
+					if (intersecting) {
+						console.log('intersecting');
+						mainElem.classList.add('scaled-down');
+					} else {
+						mainElem.classList.remove('scaled-down');
+					}
+				})
+			},
+			{
+				threshold: 0.20
+			}
+			);
+
+			let options = {
+				root: document.querySelector('body'),
+				rootMargin: '0px',
+				threshold: 1.0
+			};
+
+			const target = document.querySelector('footer');
+			observer.observe(target);
+		</script>
+
+		<script type="text/javascript" async src="../../libs/vanilla-tilt.min.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/libs/confetti.browser.min.js"></script> -->
+  </body>
+</html>
