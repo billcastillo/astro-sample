@@ -49,16 +49,10 @@ const {
         <slot />
       </main>
     </div>
-    
-    <div class="h-[1px] footer-sentinel invisible"></div>
+
     <Footer />
 
 		<script>
-			// import confetti from 'canvas-confetti';
-			// document.body.querySelectorAll('.js-confetti').forEach((btn) => {
-			// 	btn.addEventListener('click', () => confetti());
-			// });
-
 			const mainElem = document.querySelector('.wrapper');
 
 			const observer = new IntersectionObserver(entries => {
@@ -97,7 +91,7 @@ const {
 			observer.observe(target);
 		</script>
 
-		<script type="text/javascript" async src="../../libs/vanilla-tilt.min.js"></script>
+		<script is:inline type="text/javascript" src="../../libs/vanilla-tilt.min.js"></script>
 		<!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/libs/confetti.browser.min.js"></script> -->
   </body>
 </html>
