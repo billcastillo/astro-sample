@@ -1,10 +1,18 @@
 ---
 const { title } = Astro.props
 ---
-<div>
+
+<div class="shadow-lg">
   <div class="relative rounded-md border-t-2 border-white">
-    <h3 class="absolute left-2 top-1/2 -translate-y-1/2 text-white font-verdana text-shadow-1">{title || ''}</h3>
-    <div class="rounded-t-md h-[12px] bg-gradient-to-b from-[#B6B6B6] to-[#8B8B8B]"></div>
+    <h4
+      class="absolute left-2 top-1/2 -translate-y-1/2 text-white font-verdana text-shadow-1"
+    >
+      {title || ''}
+    </h4>
+    <div
+      class="rounded-t-md h-[12px] bg-gradient-to-b from-[#B6B6B6] to-[#8B8B8B]"
+    >
+    </div>
     <div class="h-[12px] bg-gradient-to-b from-black to-transparent"></div>
   </div>
 

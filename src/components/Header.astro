@@ -1,18 +1,14 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../config';
+import HeaderLink from './HeaderLink.astro'
+import { RAN_PINAS_SOCIAL } from '../config'
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/bir-index">Index</HeaderLink>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+  <nav class="text-center text-bir-text-green">
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/guides">Guides</HeaderLink>
+    <HeaderLink href={RAN_PINAS_SOCIAL.ran_pinas.url} target="_blank"
+      >Play Now</HeaderLink
+    >
+  </nav>
 </header>

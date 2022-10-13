@@ -1,47 +1,60 @@
 ---
-import SocialMediaButton from './SocialMediaButton.astro';
-import ZigDivider from './ZigDivider.astro';
+import SocialMediaButton from './SocialMediaButton.astro'
+import ZigDivider from './ZigDivider.astro'
 import { RAN_PINAS_SOCIAL } from '../config'
 
-const today = new Date(); 
+const today = new Date()
 ---
 
-<footer class="relative overflow-hidden m-auto container px-6">
-	<div class="absolute inset-x-0 -bottom-[200px] max-w-[350px] mx-auto -z-10">
-		<img class="w-full" src="/swordsman.png" />
-	</div>
-	<div class="py-[24px]">
-		<div class="mx-auto max-w-[500px]">
-			<img class="w-full" src="/logo/logo-12.svg" data-tilt data-tilt-glare />
-		</div>
+<footer
+  class="relative overflow-hidden bg-[url('/bg/bg-red.jpg')] bg-fixed bg-cover"
+>
+  <div class="px-6 mx-auto container">
+    <div class="absolute inset-x-0 -bottom-[200px] max-w-[350px] mx-auto -z-10">
+      <img class="w-full" src="/swordsman.png" />
+    </div>
+    <div class="pt-24 pb-[24px]">
+      <div class="mx-auto max-w-[300px]">
+        <img class="w-full" src="/logo/logo-12.svg" data-tilt data-tilt-glare />
+      </div>
 
-		<div class="py-[24px] text-center">
-			<p class="text-bir-text-green font-changa text-lg">UKRAINE x BIR x TAXIC</p>
-		</div>
+      <div class="py-[24px] text-center">
+        <p class="text-bir-text-green font-changa text-lg">
+          UKRAINE x BIR x TAXIC
+        </p>
+      </div>
 
-		<ZigDivider />
+      <ZigDivider />
 
-		<div class="font-bebas mb-[88px] lg:mb-[128px] text-center">
-			<div class="mb-[32px]">
-				<h3 class="leading-none text-bir-text-green text-4xl lg:text-[48px]">Ran Online Pinas</h3>
-				<a class="font-changa text-lg" href="https://ranpinas.com" target="_blank" rel="noreferrer">
-					ranpinas.com
-				</a>
-			</div>
-			<div class="grid place-items-center text-center">
-				<div class="block mb-4">
-					<SocialMediaButton data={RAN_PINAS_SOCIAL.ran_pinas} />
-				</div>
-				<div class="block">
-					<SocialMediaButton data={RAN_PINAS_SOCIAL.ran_pinas_strife} />
-				</div>
-			</div>
-		</div>
+      <div class="font-bebas mb-[88px] lg:mb-[128px] text-center">
+        <div class="mb-[32px]">
+          <h3 class="leading-none text-bir-text-green text-4xl lg:text-[48px]">
+            Ran Online Pinas
+          </h3>
+          <a
+            class="font-changa text-lg"
+            href="https://ranpinas.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            ranpinas.com
+          </a>
+        </div>
+        <div class="grid place-items-center text-center">
+          <div class="block mb-4">
+            <SocialMediaButton data={RAN_PINAS_SOCIAL.ran_pinas} />
+          </div>
+          <div class="block">
+            <SocialMediaButton data={RAN_PINAS_SOCIAL.ran_pinas_strife} />
+          </div>
+        </div>
+      </div>
 
-		<div class="text-center">
-			<p class="text-md text-bir-text-gray">
-				Copyright &copy; {today.getFullYear()}. All rights reserved.
-			</p>
-		</div>
-	</div>
+      <div class="text-center">
+        <p class="text-md text-bir-text-gray">
+          Copyright &copy; {today.getFullYear()}. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>

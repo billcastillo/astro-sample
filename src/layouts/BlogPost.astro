@@ -1,25 +1,23 @@
 ---
-import '../styles/global.css';
-import '@fontsource/changa/400.css';
-import '@fontsource/bebas-neue/400.css';
+import GlobalFontAndStyle from '../components/GlobalFontAndStyle.astro'
 
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 
 export interface Props {
   content: {
-    title: string;
-    description: string;
-    pubDate?: string;
-    updatedDate?: string;
-    heroImage?: string;
-  };
+    title: string
+    description: string
+    pubDate?: string
+    updatedDate?: string
+    heroImage?: string
+  }
 }
 
 const {
   content: { title, description, pubDate, updatedDate, heroImage },
-} = Astro.props as Props;
+} = Astro.props as Props
 ---
 
 <html>
@@ -40,13 +38,13 @@ const {
     </style>
   </head>
 
-  <body>
+  <body class="bg-bir-dark">
     <Header />
+
     <main>
-      <article class="prose prose-xl">
+      <article class="prose prose-invert prose-xl container mx-auto my-16">
         {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        {pubDate && <time>{pubDate}</time>}
+        <h1 class="m-0 p-0 font-bebas title text-6xl md:text-8xl">{title}</h1>
         {
           updatedDate && (
             <div>
@@ -58,6 +56,7 @@ const {
         <slot />
       </article>
     </main>
+
     <Footer />
   </body>
 </html>

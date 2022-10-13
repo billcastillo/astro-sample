@@ -1,0 +1,48 @@
+---
+import { Picture } from '@astrojs/image/components'
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob('../pages/guides/*.{md,mdx}')).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+)
+---
+
+<div class="mb-16 mx-auto max-w-4xl">
+  <img class="w-full" src="/shape-1.png" />
+</div>
+<h2
+  class="mb-16 text-center uppercase leading-tight font-bebas text-bir-text-green"
+>
+  Guides
+</h2>
+<div class="mx-auto max-w-lg md:max-w-xl lg:max-w-2xl">
+  <ul class="w-full flex flex-col justify-center content-center">
+    {
+      posts.map((post) => (
+        <li class="mb-16">
+          <a href={post.url}>
+            <div class="flex content-center items-center">
+              <div class="mr-4 md:mr-8 lg:mr-16 shrink-0 max-w-[150px] lg:max-w-full">
+                <Picture
+                  widths={[100, 250]}
+                  sizes="(max-width: 640px), (min-width: 1024px) 100vw"
+                  format="webp"
+                  aspectRatio={8 / 6}
+                  src={post.frontmatter.heroImage}
+                  alt={post.frontmatter.title}
+                />
+              </div>
+              <div class="">
+                <h3 class="font-bebas uppercase text-white">
+                  {post.frontmatter.title}
+                </h3>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
