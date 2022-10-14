@@ -13,7 +13,7 @@ const posts = (await Astro.glob('../pages/guides/*.{md,mdx}')).sort(
   <img class="w-full" src="/shape-1.png" />
 </div>
 <h2
-  class="mb-16 text-center uppercase leading-tight font-bebas text-bir-text-green"
+  class="mb-24 text-center uppercase leading-tight font-bebas text-bir-text-green"
 >
   Guides
 </h2>
@@ -21,13 +21,14 @@ const posts = (await Astro.glob('../pages/guides/*.{md,mdx}')).sort(
   <ul class="w-full flex flex-col justify-center content-center">
     {
       posts.map((post) => (
-        <li class="mb-16">
+        <li class="guide-post mb-16 border-4 border-bir-red rounded-xl hover:shadow-lg">
           <a href={post.url}>
             <div class="flex content-center items-center">
               <div class="mr-4 md:mr-8 lg:mr-16 shrink-0 max-w-[150px] lg:max-w-full">
                 <Picture
+                  class="guide-picture rounded-xl"
                   widths={[100, 250]}
-                  sizes="(max-width: 640px), (min-width: 1024px) 100vw"
+                  sizes="(max-width: 640px), (min-width: 1024px)"
                   format="webp"
                   aspectRatio={8 / 6}
                   src={post.frontmatter.heroImage}
