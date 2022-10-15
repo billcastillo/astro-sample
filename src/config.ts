@@ -18,3 +18,20 @@ export const RAN_PINAS_SOCIAL = {
     url: 'https://www.facebook.com/groups/ranpinasstrife'
   }
 }
+export const BOSS_TYPES = [
+  {
+    name: 'Dark Arts Master',
+    id: 'DAM',
+    respawn_time: 30
+  },
+  {
+    name: 'Cruel Jupiter',
+    id: 'CJ',
+    respawn_time: 480
+  },
+  {
+    name: 'Corrupted Bumbero',
+    id: 'CB',
+    respawn_time: 60
+  },
+]

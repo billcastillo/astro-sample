@@ -1,7 +1,7 @@
 ---
 import GlobalFontAndStyle from '../components/GlobalFontAndStyle.astro'
 import BIRLayout from '../layouts/BIRLayout.astro'
-
+import { BOSS_TYPES } from '../config'
 import Header from '../components/Header.astro'
 
 const content = {
@@ -12,117 +12,145 @@ const content = {
 ---
 
 <BIRLayout content={content}>
-  <section class="pass-section place-items-center min-h-screen grid">
-    <form>
-      <div class="form-group">
-        <label for="password" class="mb-4 block text-2xl lg:text-4xl"
-          >Password:</label
+  <div class="px-6">
+    <section class="pass-section place-items-center min-h-screen grid">
+      <form>
+        <div class="form-group">
+          <label for="password" class="mb-4 block text-2xl lg:text-4xl"
+            >Password:</label
+          >
+          <input
+            type="password"
+            name="password"
+            maxlength="12"
+            class="px-4 py-2 text-bir-dark"
+          />
+          <div class="mt-4">
+            <p class="pass-output text-2xl text-bir-red"></p>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="submit-pass py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
+          >Submit</button
         >
-        <input
-          type="password"
-          name="password"
-          maxlength="12"
-          class="px-4 py-2 text-bir-dark"
-        />
-        <div class="mt-4">
-          <p class="pass-output text-2xl text-bir-red"></p>
+      </form>
+    </section>
+
+    <section class="pb-24 boss-section min-h-screen hidden">
+      <div class="container pt-24 mx-auto max-w-md">
+        <div class="mb-16 p-4 border-2 border-bir-red rounded-xl">
+          <h2 class="mb-4 text-bir-text-green text-4xl">Instructions:</h2>
+          <ol class="ml-4 list-decimal text-xl">
+            <li>Select a boss type</li>
+            <li>
+              Click yung "Get next respawn time" kung ngayon lang namatay yung
+              boss or;
+            </li>
+            <li>Set a custom time kung anong oras namatay yung boss</li>
+          </ol>
         </div>
-      </div>
-      <button
-        type="submit"
-        class="submit-pass py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
-        >Submit</button
-      >
-    </form>
-  </section>
-  <section class="boss-section place-items-center min-h-screen hidden">
-    <div>
-      <div class="form-group">
-        <h2 class="mb-4 text-bir-text-green text-4xl">Boss Type:</h2>
-        <div class="pb-4">
-          <input type="radio" id="DAM" name="boss_type" value="DAM" checked />
-          <label
-            for="DAM"
-            class="ml-4 text-bir-red text-2xl lg:text-3xl hover:brightness-125"
-            >Dark Arts Master</label
-          ><br />
+        <div class="form-group">
+          <h2 class="mb-4 text-bir-text-green text-4xl">Boss Type:</h2>
+          <div>
+            {
+              BOSS_TYPES.map((boss, index) => (
+                <div class="pb-4">
+                  <input
+                    type="radio"
+                    id={boss.id}
+                    name="boss_type"
+                    value={JSON.stringify(boss)}
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    checked={index === 0}
+                  />
+                  <label
+                    for={boss.id}
+                    class="ml-4 text-bir-red text-2xl lg:text-3xl hover:brightness-125"
+                  >
+                    {boss.name}
+                  </label>
+                  <br />
+                </div>
+              ))
+            }
+          </div>
         </div>
+
+        <hr class="mb-8" />
+
         <div>
-          <input type="radio" id="CJ" name="boss_type" value="CJ" />
-          <label
-            for="CJ"
-            class="ml-4 text-bir-red text-2xl lg:text-3xl hover:brightness-125"
-            >Cruel Jupiter</label
-          ><br />
+          <button
+            class="mb-8 boss-killed-now w-full py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl lg:text-3xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
+            >Get next respawn time</button
+          >
         </div>
-      </div>
-      <hr class="mb-8" />
-      <div class="hidden">
-        <form id="bosshunt_form" class="mb-8 bosshunt_form">
-          <div class="form-group">
-            <h2 class="mb-4 text-bir-text-green text-4xl">Time of death:</h2>
-            <div class="flex">
-              <div class="mr-4">
-                <label for="time_of_death_hour" class="block mr-4 mb-1 text-2xl"
-                  >Hour</label
-                >
-                <input
-                  class="px-5 py-2 text-bir-dark rounded-md text-2xl"
-                  type="number"
-                  name="time_of_death_hour"
-                  id="time_of_death_hour"
-                  min="1"
-                  max="12"
-                  required
-                />
-              </div>
-              <div class="mr-4">
-                <label for="time_of_death_min" class="block mr-4 mb-1 text-2xl"
-                  >Min</label
-                >
-                <input
-                  class="px-5 py-2 text-bir-dark rounded-md text-2xl"
-                  pattern="[0-9]+"
-                  type="number"
-                  name="time_of_death_min"
-                  id="time_of_death_min"
-                  min="0"
-                  max="59"
-                  required
-                />
-              </div>
-              <div class="">
-                <label for="meridiem" class="block mb-1 text-2xl">AM/PM</label>
-                <select
-                  name="meridiem"
-                  id="meridiem"
-                  class="w-full block px-5 rounded-xl text-bir-dark text-2xl"
-                >
-                  <option value="AM">AM</option>
-                  <option value="PM">PM</option>
-                </select>
+        <h3 class="mb-8 text-center text-bir-text-green leading-none">OR</h3>
+        <div class="block">
+          <form id="bosshunt_form" class="mb-8 bosshunt_form">
+            <div class="form-group">
+              <h2 class="mb-4 text-bir-text-green text-4xl">
+                Custom Time of death:
+              </h2>
+              <div class="w-full flex content-around items-stretch">
+                <div class="mr-4">
+                  <label
+                    for="time_of_death_hour"
+                    class="block mr-4 mb-1 text-2xl">Hour</label
+                  >
+                  <input
+                    class="px-5 py-2 text-bir-dark rounded-md text-2xl"
+                    type="number"
+                    name="time_of_death_hour"
+                    id="time_of_death_hour"
+                    min="1"
+                    max="12"
+                    required
+                  />
+                </div>
+                <div class="mr-4">
+                  <label
+                    for="time_of_death_min"
+                    class="block mr-4 mb-1 text-2xl">Min</label
+                  >
+                  <input
+                    class="px-5 py-2 text-bir-dark rounded-md text-2xl"
+                    pattern="[0-9]+"
+                    type="number"
+                    name="time_of_death_min"
+                    id="time_of_death_min"
+                    min="0"
+                    max="59"
+                    required
+                  />
+                </div>
+                <div class="">
+                  <label for="meridiem" class="block mb-1 text-2xl">AM/PM</label
+                  >
+                  <select
+                    name="meridiem"
+                    id="meridiem"
+                    class="w-full block px-5 rounded-xl text-bir-dark text-2xl"
+                  >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
-          <button
-            type="submit"
-            class="w-full py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
-            >Submit</button
-          >
-        </form>
-        <h3 class="mb-8 text-center text-bir-text-green leading-none">OR</h3>
+            <button
+              type="submit"
+              class="custom-date w-full py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
+              >Submit</button
+            >
+          </form>
+        </div>
+        <div class="mt-4 text-center">
+          <p class="output text-2xl to-bir-text-green"></p>
+        </div>
       </div>
-      <div>
-        <button
-          class="boss-killed-now w-full py-3 px-4 mx-auto bg-bir-text-green rounded-md text-bir-dark text-2xl hover:shadow-lg hover:brightness-125 disabled:bg-slate-400"
-          >Boss was killed just now</button
-        >
-      </div>
-      <div class="mt-4 text-center">
-        <p class="output text-2xl to-bir-text-green"></p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <style>
     .form-group {
@@ -132,147 +160,174 @@ const content = {
 </BIRLayout>
 
 <script>
-  const respawnTime = {
-    DAM: 30,
-    CJ: 480,
-  }
+  ;(function () {
+    const disablePass = false
 
-  const form = document.querySelector('.bosshunt_form')
-  const output = document.querySelector('.output')
-  const passOutput = document.querySelector('.pass-output')
-  const submitPassBtn = document.querySelector('.submit-pass')
-  const passSection = document.querySelector('.pass-section')
-  const bossSection = document.querySelector('.boss-section')
+    const form = document.querySelector('.bosshunt_form')
+    const output = document.querySelector('.output')
+    const passOutput = document.querySelector('.pass-output')
+    const submitPassBtn = document.querySelector('.submit-pass')
+    const passSection = document.querySelector('.pass-section')
+    const bossSection = document.querySelector('.boss-section')
+    const customDateBtn = document.querySelector('.custom-date')
 
-  let submittedButton
-  let oldButtonText = ''
+    let submittedButton
+    let oldButtonText = ''
 
-  const getBossTypeValue = () => {
-    return document.querySelector('input[name="boss_type"]:checked').value
-  }
-
-  const getManilaDate = () => {
-    const formatter = new Intl.DateTimeFormat([], {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      timeZone: 'Asia/Manila',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-    })
-
-    return formatter.format(new Date())
-  }
-
-  const convertDatetoAMPM = (date) => {
-    return date.toLocaleTimeString('en-US', {
-      // en-US can be set to 'default' to use user's browser settings
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  }
-
-  const toggleButton = (btn, enabled) => {
-    submittedButton = btn
-    oldButtonText = enabled ? oldButtonText : btn.innerHTML
-
-    enabled
-      ? submittedButton.removeAttribute('disabled')
-      : submittedButton.setAttribute('disabled', true)
-    submittedButton.innerHTML = enabled ? oldButtonText : 'Sending...'
-  }
-
-  const formatMesage = (bossType, formattedTime) => {
-    return `**${bossType}** will respawn later at: **${formattedTime}**`
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const data = Object.fromEntries(new FormData(e.target).entries())
-    console.log(data)
-
-    const d = new Date(getManilaDate())
-    d.setMinutes(d.getMinutes() + data.time_of_death_min)
-
-    output.innerHTML = 'Submitted! ' + d.getMinutes()
-  })
-
-  const justKilledBtn = document.querySelector('.boss-killed-now')
-  justKilledBtn.addEventListener('click', (e) => {
-    output.innerHTML = ''
-
-    const date = new Date(getManilaDate())
-    const bossType = getBossTypeValue()
-
-    date.setMinutes(date.getMinutes() + respawnTime[bossType])
-
-    const formattedTime = convertDatetoAMPM(date)
-    toggleButton(justKilledBtn, false)
-    submitWebhook(formatMesage(bossType, formattedTime))
-  })
-
-  // const parseResponse = (username = 'Castle') => {
-  //   return {
-  //     embeds: [
-  //       {
-  //         description: 'description',
-  //         fields: [
-  //           {
-  //             name: 'SALI DAW SI:',
-  //             value: username,
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   }
-  // }
-
-  const submitWebhook = (webhookContent = '') => {
-    const birWebhookURL =
-      'https://discord.com/api/webhooks/964822132725006356/dZDQm9Os4c0tzVvsw7cABFHuzjJSJ_lg1Cq9hJWsOBUHCbgWVazhLGigkxDjNFt_v2XA'
-    const testWebhookURL =
-      'https://discord.com/api/webhooks/964142212986331176/n3071ABTQYaAs_XLFmQxmXLCLgQLI4KI0UExBuW7ZNcTShBOu0E5cdvDSCOHyiAdP7AF'
-    const bossTimerURL =
-      'https://discord.com/api/webhooks/1030671429915648111/DXP8lYHXjURo7vOooK9zeIJqqYR2-cFvMm9XqIqs_ZovpI-Jsi2viyo-lnF-abfzLaMH'
-
-    const objectWithData = {
-      content: webhookContent,
-      // ...parseResponse(),
+    const getBossTypeValue = () => {
+      return document.querySelector('input[name="boss_type"]:checked').value
     }
 
-    webhookContent &&
-      fetch(bossTimerURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(objectWithData),
+    const getManilaDate = () => {
+      const formatter = new Intl.DateTimeFormat([], {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        timeZone: 'Asia/Manila',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
       })
-        .then(() => {
-          output.innerHTML = 'Submitted!'
-          toggleButton(submittedButton, true)
-        })
-        .catch(() => {
-          output.innerHTML = 'Failed to submit! Try again.'
-          toggleButton(submittedButton, true)
-        })
-  }
 
-  submitPassBtn.addEventListener('click', (e) => {
-    console.log('e: ', e)
-    e.preventDefault()
-    const passVal = document.querySelector('input[type="password"]').value
-
-    if (passVal === 'bosshunt') {
-      passSection.classList.remove('grid')
-      passSection.classList.add('hidden')
-
-      bossSection.classList.remove('hidden')
-      bossSection.classList.add('grid')
-    } else {
-      passOutput.innerHTML = 'Incorrect password'
+      return formatter.format(new Date())
     }
-  })
+
+    const getFormattedDate = (hour, min) => {
+      const date = new Date(getManilaDate())
+      date.setHours(hour, min, 0) // Set hours, minutes and seconds
+
+      return date
+    }
+
+    const convertDatetoAMPM = (date) => {
+      return date.toLocaleTimeString('en-US', {
+        // en-US can be set to 'default' to use user's browser settings
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    }
+
+    const toggleButton = (enabled) => {
+      oldButtonText = enabled ? oldButtonText : submittedButton.innerHTML
+
+      enabled
+        ? submittedButton.removeAttribute('disabled')
+        : submittedButton.setAttribute('disabled', true)
+      submittedButton.innerHTML = enabled ? oldButtonText : 'Sending...'
+    }
+
+    const formatMesage = (bossValue, formattedTime) => {
+      return `**${bossValue.name}** will respawn later at: **${formattedTime}**`
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      submittedButton = customDateBtn
+      toggleButton(false)
+      const data = Object.fromEntries(new FormData(e.target).entries())
+
+      // Convert to military time when meridiem is "PM"
+      const militaryHour =
+        data.meridiem === 'PM' && parseInt(data.time_of_death_hour) <= 11
+          ? parseInt(data.time_of_death_hour) + 12
+          : data.time_of_death_hour
+      const date = getFormattedDate(militaryHour, data.time_of_death_min)
+
+      const bossValue = JSON.parse(getBossTypeValue()) || {}
+      date.setMinutes(date.getMinutes() + bossValue.respawn_time)
+      const formattedTime = convertDatetoAMPM(date)
+      const message = formatMesage(bossValue, formattedTime)
+
+      submitWebhook(message)
+      output.innerHTML = message
+    })
+
+    const justKilledBtn = document.querySelector('.boss-killed-now')
+    justKilledBtn.addEventListener('click', (e) => {
+      output.innerHTML = ''
+      submittedButton = justKilledBtn
+      toggleButton(false)
+
+      const bossValue = JSON.parse(getBossTypeValue()) || {}
+      const date = new Date(getManilaDate())
+
+      date.setMinutes(date.getMinutes() + bossValue.respawn_time)
+
+      const formattedTime = convertDatetoAMPM(date)
+      toggleButton(justKilledBtn, false)
+
+      const message = formatMesage(bossValue, formattedTime)
+      submitWebhook(message)
+      output.innerHTML = message
+    })
+
+    // const parseResponse = (username = 'Castle') => {
+    //   return {
+    //     embeds: [
+    //       {
+    //         description: 'description',
+    //         fields: [
+    //           {
+    //             name: 'SALI DAW SI:',
+    //             value: username,
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   }
+    // }
+
+    const submitWebhook = (webhookContent = '') => {
+      const birWebhookURL =
+        'https://discord.com/api/webhooks/964822132725006356/dZDQm9Os4c0tzVvsw7cABFHuzjJSJ_lg1Cq9hJWsOBUHCbgWVazhLGigkxDjNFt_v2XA'
+      const testWebhookURL =
+        'https://discord.com/api/webhooks/964142212986331176/n3071ABTQYaAs_XLFmQxmXLCLgQLI4KI0UExBuW7ZNcTShBOu0E5cdvDSCOHyiAdP7AF'
+      const bossTimerURL =
+        'https://discord.com/api/webhooks/1030671429915648111/DXP8lYHXjURo7vOooK9zeIJqqYR2-cFvMm9XqIqs_ZovpI-Jsi2viyo-lnF-abfzLaMH'
+
+      const objectWithData = {
+        content: webhookContent,
+        // ...parseResponse(),
+      }
+
+      webhookContent &&
+        fetch(disablePass ? testWebhookURL : bossTimerURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(objectWithData),
+        })
+          .then(() => {
+            // output.innerHTML = 'Submitted!'
+            toggleButton(true)
+          })
+          .catch(() => {
+            output.innerHTML = 'Failed to submit! Try again.'
+            toggleButton(true)
+          })
+    }
+
+    const toggleShowContent = (isShow) => {
+      passSection.classList[isShow ? 'remove' : 'add']('grid')
+      passSection.classList[isShow ? 'add' : 'remove']('hidden')
+
+      bossSection.classList[isShow ? 'remove' : 'add']('hidden')
+      bossSection.classList[isShow ? 'add' : 'remove']('block')
+    }
+
+    submitPassBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      const passVal = document.querySelector('input[type="password"]').value
+
+      if (passVal === 'bosshunt') {
+        toggleShowContent(true)
+      } else {
+        passOutput.innerHTML = 'Incorrect password'
+      }
+    })
+
+    disablePass && toggleShowContent(true)
+  })()
 </script>
