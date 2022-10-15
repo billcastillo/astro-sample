@@ -32,6 +32,6 @@ export const BOSS_TYPES = [
   {
     name: 'Corrupted Bumbero',
     id: 'CB',
-    respawn_time: 60
+    respawn_time: 30
   },
 ]
