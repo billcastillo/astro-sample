@@ -68,7 +68,7 @@ const content = {
                     for={boss.id}
                     class="ml-4 text-bir-red text-2xl lg:text-3xl hover:brightness-125"
                   >
-                    {boss.name}
+                    {boss.name} ({boss.respawn_time} min)
                   </label>
                   <br />
                 </div>
@@ -161,7 +161,7 @@ const content = {
 
 <script>
   ;(function () {
-    const disablePass = false
+    const disablePass = true
 
     const form = document.querySelector('.bosshunt_form')
     const output = document.querySelector('.output')
@@ -173,6 +173,62 @@ const content = {
 
     let submittedButton
     let oldButtonText = ''
+
+    const getCompassTime = (date = new Date()) => {
+      let compassHour = 0
+      let compassMinute = 0
+      let remainingSeconds = 0
+
+      const dateSeconds = date.getSeconds()
+      const dateMinutes = date.getMinutes()
+      const dateHours = date.getHours()
+
+      const addToCompassHour = (hours) => {
+        compassHour += hours
+
+        if (compassHour >= 24) {
+          compassHour -= 24
+        }
+      }
+
+      const addToCompassMinute = (minutes) => {
+        compassMinute += minutes
+
+        if (compassMinute >= 60) {
+          addToCompassHour(1)
+          compassMinute -= 60
+        }
+      }
+
+      const formatCompassTime = (hour, minute) => {
+        return `${hour < 12 ? '0' + hour : hour}:${
+          minute < 10 ? '0' + minute : minute
+        }`
+      }
+
+      // compass time resets every 2 hrs
+      // if hours more divisible by 2, start with 00:00
+      // otherwise start with 12:00
+      if (dateHours % 2 !== 0) {
+        compassHour = 12
+      }
+
+      // add an hour to compass time for every 5 mins in date
+      if (dateMinutes > 5) {
+        addToCompassHour(Math.floor(dateMinutes / 5))
+        remainingSeconds = (dateMinutes % 5) * 60
+      }
+
+      remainingSeconds += dateSeconds
+      addToCompassMinute(remainingSeconds / 5)
+
+      const compassTime = formatCompassTime(
+        compassHour,
+        Math.floor(compassMinute)
+      )
+      console.log('compassTime: ', compassTime)
+      return compassTime
+    }
 
     const getBossTypeValue = () => {
       return document.querySelector('input[name="boss_type"]:checked').value
@@ -216,8 +272,8 @@ const content = {
       submittedButton.innerHTML = enabled ? oldButtonText : 'Sending...'
     }
 
-    const formatMesage = (bossValue, formattedTime) => {
-      return `**${bossValue.name}** will respawn later at: **${formattedTime}**`
+    const formatMesage = (bossValue, formattedTime, compassTime) => {
+      return `**${bossValue.name}** will respawn later at: **${formattedTime}** | compass time: **${compassTime}**`
     }
 
     form.addEventListener('submit', (e) => {
@@ -236,8 +292,9 @@ const content = {
 
       const bossValue = JSON.parse(getBossTypeValue()) || {}
       date.setMinutes(date.getMinutes() + bossValue.respawn_time)
+      const compassTime = getCompassTime(date)
       const formattedTime = convertDatetoAMPM(date)
-      const message = formatMesage(bossValue, formattedTime)
+      const message = formatMesage(bossValue, formattedTime, compassTime)
 
       submitWebhook(message)
       output.innerHTML = message
@@ -255,10 +312,11 @@ const content = {
       date.setMinutes(date.getMinutes() + bossValue.respawn_time)
 
       const formattedTime = convertDatetoAMPM(date)
-      toggleButton(justKilledBtn, false)
+      const compassTime = getCompassTime(date)
 
-      const message = formatMesage(bossValue, formattedTime)
+      const message = formatMesage(bossValue, formattedTime, compassTime)
       submitWebhook(message)
+
       output.innerHTML = message
     })
 
@@ -292,7 +350,7 @@ const content = {
       }
 
       webhookContent &&
-        fetch(disablePass ? testWebhookURL : bossTimerURL, {
+        fetch(bossTimerURL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
