@@ -159,9 +159,10 @@ const content = {
   </style>
 </BIRLayout>
 
-<script>
+<script type="module">
   ;(function () {
     const disablePass = true
+    const devMode = false
 
     const form = document.querySelector('.bosshunt_form')
     const output = document.querySelector('.output')
@@ -175,6 +176,14 @@ const content = {
     let oldButtonText = ''
 
     const getCompassTime = (date = new Date()) => {
+      // real time seconds tobe reduced to computed compass time
+      const leadtime = 35
+
+      // adjust based on leadtime
+      date = date.getTime() - leadtime * 1000
+      date = new Date(date)
+      console.log('date: ', date)
+
       let compassHour = 0
       let compassMinute = 0
       let remainingSeconds = 0
@@ -201,7 +210,7 @@ const content = {
       }
 
       const formatCompassTime = (hour, minute) => {
-        return `${hour < 12 ? '0' + hour : hour}:${
+        return `${hour < 10 ? '0' + hour : hour}:${
           minute < 10 ? '0' + minute : minute
         }`
       }
@@ -226,7 +235,7 @@ const content = {
         compassHour,
         Math.floor(compassMinute)
       )
-      console.log('compassTime: ', compassTime)
+
       return compassTime
     }
 
@@ -350,7 +359,7 @@ const content = {
       }
 
       webhookContent &&
-        fetch(bossTimerURL, {
+        fetch(devMode ? testWebhookURL : bossTimerURL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

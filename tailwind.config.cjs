@@ -34,7 +34,7 @@ module.exports = {
           " url('/bg/pattern-cross.png'), url('/bg/texture-1.jpg')",
         'texture-1': "url('/bg/texture-1.jpg')",
         'pattern-1': "url('/bg/pattern-cross.png')",
-        'bir-lang-malakas': "url('/bir-lang-malakas.svg')"
+        'bir-lang-malakas': "url('/bir-lang-malakas.svg')",
       },
     },
   },
