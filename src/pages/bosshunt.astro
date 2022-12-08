@@ -177,12 +177,13 @@ const content = {
 
     const getCompassTime = (date = new Date()) => {
       // real time seconds tobe reduced to computed compass time
-      const leadtime = 35
+      const leadtime = 45
 
       // adjust based on leadtime
-      date = date.getTime() - leadtime * 1000
-      date = new Date(date)
-      console.log('date: ', date)
+      if (leadtime > 0) {
+        date = date.getTime() - leadtime * 1000
+        date = new Date(date)
+      }
 
       let compassHour = 0
       let compassMinute = 0
