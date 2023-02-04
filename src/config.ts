@@ -22,7 +22,7 @@ export const BOSS_TYPES = [
   {
     name: 'Dark Arts Master',
     id: 'DAM',
-    respawn_time: 30
+    respawn_time: 60
   },
   {
     name: 'Cruel Jupiter',
