@@ -34,4 +34,19 @@ export const BOSS_TYPES = [
     id: 'CB',
     respawn_time: 40
   },
+  {
+    name: 'Bilanggo',
+    id: 'BL',
+    respawn_time: 720
+  },
+  {
+    name: 'Astral Swordsman',
+    id: 'AS',
+    respawn_time: 720
+  },
+  {
+    name: 'Crimson Swordsman',
+    id: 'CS',
+    respawn_time: 720
+  },
 ]
