@@ -49,4 +49,9 @@ export const BOSS_TYPES = [
     id: 'CS',
     respawn_time: 720
   },
+  {
+    name: 'Dark Arts Agent',
+    id: 'DAA',
+    respawn_time: 720
+  },
 ]
