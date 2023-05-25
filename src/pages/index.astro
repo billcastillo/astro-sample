@@ -6,7 +6,7 @@ import BIRParticles from '../components/BIRParticles.astro'
 import GuideList from '../components/GuideList.astro'
 import ZigDivider from '../components/ZigDivider.astro'
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import { SITE_TITLE, SITE_DESCRIPTION, BIR_SENIORS } from '../config'
 
 const content = {
   title: SITE_TITLE,
@@ -76,13 +76,32 @@ const content = {
 
   <section class="px-6 py-16 lg:py-32">
     <div class="container mx-auto">
-      <div class="flex justify-center content-center items-center">
-        <h2 class="mr-8 uppercase leading-tight font-bebas text-bir-text-green">
+      <div
+        class="flex flex-col sm:flex-row justify-center content-center items-center"
+      >
+        <h2
+          class="mr-8 text-center sm:text-left mb-4 sm:mb-0 sm:mr-16 uppercase leading-tight font-bebas text-bir-text-green"
+        >
           Sali ka? <br /> pm mo kami
         </h2>
-        <div class="max-w-[150px] lg:max-w-[250px]">
-          <img src="/char/castle.png" />
-          <p class="mt-4 text-center text-lg lg:text-2xl">IGN: Castle</p>
+        <div class="w-full max-w-[280px]">
+          <RanWindow title="Friends">
+            <div class="p-3">
+              <ul
+                class="font-verdana text-white tracking-wide overflow-y-auto max-h-[300px]"
+              >
+                {
+                  BIR_SENIORS.sort().map((senior) => {
+                    return (
+                      <li class="before:content-['[0]']">&nbsp;{senior}</li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          </RanWindow>
+          <!-- <img src="/char/castle.png" />
+          <p class="mt-4 text-center text-lg lg:text-2xl">IGN: Castle</p> -->
         </div>
       </div>
     </div>
