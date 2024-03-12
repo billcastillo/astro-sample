@@ -60,25 +60,5 @@ export const BOSS_TYPES = [
 ];
 
 export const BIR_SENIORS = [
-  'Castle#51853',
-  'fili#113486',
-  'jayco09#260915',
-  'MrCasper#162959',
-  'khenzii---#234302',
-  'Yumiko01#246955',
-  'Avrille#13665',
-  '`Ashura-#11848',
-  'SYNTAX-ERROR#45712',
   'KINDNESS#42520',
-  'ChupapiPlays#184491',
-  '-|-RGZ-|-#179451',
-  '-Rel#248573',
-  'Mastermind#49950',
-  'SOULJABOY#127299',
-  'Concealed#259308',
-  '-Reinhard`#69030',
-  'Therdee#54999',
-  '`Aura#216465',
-  'FsPayr#151366',
-  'brook-#174786'
 ];
