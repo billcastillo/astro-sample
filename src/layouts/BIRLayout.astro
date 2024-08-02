@@ -18,7 +18,7 @@ const {
 } = Astro.props as Props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-us">
   <head>
     <BaseHead title={title} description={description} />
@@ -93,6 +93,13 @@ const {
     <script is:inline type="text/javascript" src="/libs/vanilla-tilt.min.js"
     ></script>
     <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- https://www.kirilv.com/canvas-confetti/ -->
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
+    ></script>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/libs/confetti.browser.min.js"></script> -->
   </body>
 </html>

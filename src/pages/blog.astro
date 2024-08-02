@@ -1,0 +1,31 @@
+---
+import '../components/GlobalFontAndStyle.astro'
+import BIRLayout from '../layouts/BIRLayout.astro'
+
+import Header from '../components/Header.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+
+import BlogList from '../components/BlogList.astro'
+
+const content = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  isBlog: false,
+}
+
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+const posts = (await Astro.glob('../pages/blog/*.{md,mdx}')).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+)
+---
+
+<BIRLayout content={content}>
+  <Header />
+  <div class="container mx-auto">
+    <div class="px-6 py-16 md:py-32">
+      <BlogList />
+    </div>
+  </div>
+</BIRLayout>

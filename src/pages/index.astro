@@ -4,6 +4,7 @@ import BIRLayout from '../layouts/BIRLayout.astro'
 import RanWindow from '../components/RanWindow.astro'
 import BIRParticles from '../components/BIRParticles.astro'
 import GuideList from '../components/GuideList.astro'
+import BlogList from '../components/BlogList.astro'
 import ZigDivider from '../components/ZigDivider.astro'
 
 import { SITE_TITLE, SITE_DESCRIPTION, BIR_SENIORS } from '../config'
@@ -28,7 +29,11 @@ const content = {
 
     <BIRParticles />
 
-    <div class="relative px-6 py-8 lg:py-16" data-tilt>
+    <div
+      class="relative px-6 py-8 lg:py-16 pb-0 hover:cursor-pointer"
+      data-tilt
+      data-confetti-button
+    >
       <h1 class="hidden">BIR Gaming</h1>
       <svg
         class="relative grid place-content-center mx-auto max-w-lg aspect-square"
@@ -47,6 +52,12 @@ const content = {
           fill="#FF0000"></path>
       </svg>
     </div>
+
+    <img
+      class="relative mx-auto w-4/5 max-w-screen-md top-0 hover:cursor-pointer drop-shadow-hover"
+      src="/celebrate-3rd-anniv.png"
+      data-school-confetti-button
+    />
   </section>
 
   <Header />
@@ -62,7 +73,7 @@ const content = {
           <h2
             class="font-bebas text-bir-text-green text-4xl lg:text-[64px] leading-tight"
           >
-            Pinakamabait na guild sa <a
+            Pinakamalakas na guild sa <a
               href="https://www.facebook.com/ranonlinepinas"
               class="underline"
               target="_blank"
@@ -77,7 +88,7 @@ const content = {
   <section class="px-6 py-16 lg:py-32">
     <div class="container mx-auto">
       <div
-        class="flex flex-col sm:flex-row justify-center content-center items-center"
+        class="flex flex-col mb-32 sm:flex-row justify-center content-center items-center"
       >
         <h2
           class="mr-8 text-center sm:text-left mb-4 sm:mb-0 sm:mr-16 uppercase leading-tight font-bebas text-bir-text-green"
@@ -104,6 +115,27 @@ const content = {
           <p class="mt-4 text-center text-lg lg:text-2xl">IGN: Castle</p> -->
         </div>
       </div>
+
+      <div class="relative mx-auto max-w-4xl">
+        <RanWindow title="Members">
+          <video
+            class="w-full h-auto hover:cursor-pointer"
+            onclick="this.play()"
+          >
+            <source type="video/mp4" src="/videos/member-2.mp4" />
+          </video>
+        </RanWindow>
+
+        <p class="text-center pt-8 text-lg">
+          Video by <a
+            target="_blank"
+            rel="noreferrer"
+            class="underline"
+            href="https://www.facebook.com/profile.php?id=61558626726323"
+            >yiyeti</a
+          >
+        </p>
+      </div>
     </div>
   </section>
 
@@ -121,6 +153,7 @@ const content = {
 
   <section class="relative px-6 py-16 lg:py-48">
     <GuideList />
+    <BlogList />
   </section>
 
   <section class="relative py-16 lg:py-48 text-center">
@@ -146,4 +179,54 @@ const content = {
       </div>
     </div>
   </section>
+  <script>
+    import confetti from 'canvas-confetti'
+    const confettiButtons = document.querySelectorAll('[data-confetti-button]')
+
+    confettiButtons.forEach((button) => {
+      button.addEventListener('click', () =>
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        })
+      )
+    })
+
+    const schoolConfetti = () => {
+      const end = Date.now() + 5 * 1000
+
+      const colors = ['#ffffff', '#FF0000']
+
+      ;(function frame() {
+        confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors,
+        })
+        confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors,
+        })
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame)
+        }
+      })()
+    }
+
+    const schoolConfettiBtn = document.querySelectorAll(
+      '[data-school-confetti-button]'
+    )
+
+    schoolConfettiBtn.forEach((button) => {
+      button.addEventListener('click', () => schoolConfetti())
+    })
+    // const confetti = require('canvas-confetti');
+  </script>
 </BIRLayout>
