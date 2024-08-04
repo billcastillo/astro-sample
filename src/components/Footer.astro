@@ -19,10 +19,21 @@ const today = new Date()
         <p class="text-bir-text-green font-changa text-lg">BIR x TAKUZA</p>
       </div>
 
+      <div class="grid place-items-center text-center">
+        <div class="block mb-4">
+          <SocialMediaButton data={RAN_PINAS_SOCIAL.bir_guild} />
+        </div>
+      </div>
+
       <ZigDivider />
 
       <div class="font-bebas mb-[88px] lg:mb-[128px] text-center">
         <div class="mb-[32px]">
+          <img
+            class="mb-8 mx-auto max-w-[150px]"
+            src="/logo/ran-pinas.png"
+            alt="ran pinas logo"
+          />
           <h3 class="leading-none text-bir-text-green text-4xl lg:text-[48px]">
             Ran Online Pinas
           </h3>
@@ -36,9 +47,6 @@ const today = new Date()
           </a>
         </div>
         <div class="grid place-items-center text-center">
-          <div class="block mb-4">
-            <SocialMediaButton data={RAN_PINAS_SOCIAL.bir_guild} />
-          </div>
           <div class="block mb-4">
             <SocialMediaButton data={RAN_PINAS_SOCIAL.ran_pinas} />
           </div>
