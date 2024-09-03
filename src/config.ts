@@ -65,7 +65,7 @@ export const BOSS_TYPES = [
   },
 ]
 
-export const BIR_SENIORS = ['KINDNESS#42520', 'zillion#202368']
+export const BIR_SENIORS = ['KINDNESS#42520']
 
 export const STREAMERS = [
   {
